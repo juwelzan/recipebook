@@ -1,102 +1,57 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: deprecated_member_use
 
-class ProductDetailsStackPage extends StatefulWidget {
-  const ProductDetailsStackPage({super.key});
+import 'package:flutter/material.dart';
+import 'package:recipebook/features/prodact_details_screen/widgets/draggable_sheet_widget.dart';
+import 'package:recipebook/main.dart';
+import 'package:recipebook/shared/widgets/circle_blaur_button.dart';
+
+class ProdactDetailsScreen extends StatefulWidget {
+  const ProdactDetailsScreen({super.key});
 
   @override
-  State<ProductDetailsStackPage> createState() =>
-      _ProductDetailsStackPageState();
+  State<ProdactDetailsScreen> createState() => _ProdactDetailsScreenState();
 }
 
-class _ProductDetailsStackPageState extends State<ProductDetailsStackPage> {
-  ScrollController scrollController = ScrollController();
-  double offset = 0;
-
+class _ProdactDetailsScreenState extends State<ProdactDetailsScreen> {
+  late DraggableScrollableController _controller;
+  double _currentSize = 0.6;
   @override
   void initState() {
-    super.initState();
-    scrollController.addListener(() {
+    _controller = DraggableScrollableController();
+    _controller.addListener(() {
       setState(() {
-        offset = scrollController.offset;
-        if (offset > 200) offset = 200; // max offset
+        _currentSize = _controller.size;
       });
     });
-  }
-
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    double containerTop = 250 - offset; // scroll অনুযায়ী move হবে
-
     return Scaffold(
       body: Stack(
         children: [
-          // Product Image
           SizedBox(
-            height: 300,
+            height: _currentSize.clamp(0.6, 0.8) * 650,
             width: double.infinity,
             child: Image.network(
               'https://picsum.photos/400/300',
               fit: BoxFit.cover,
             ),
           ),
-
-          // Scrollable Content
-          SingleChildScrollView(
-            controller: scrollController,
-            child: Column(
+          DraggableSheetWidget(controller: _controller),
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 50,
+            child: Row(
               children: [
-                SizedBox(height: 250), // image height
-                Container(height: 800, color: Colors.transparent),
+                SizedBox(width: 20.w),
+                CircleBlaurButton(child: const Icon(Icons.arrow_back)),
+                const Spacer(),
+                CircleBlaurButton(child: const Icon(Icons.bookmark)),
+                SizedBox(width: 20.w),
               ],
-            ),
-          ),
-
-          // Product Details Container
-          Positioned(
-            top: containerTop,
-            left: 0,
-            right: 0,
-            child: Container(
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-                boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 8)],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Product Name',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Product description goes here...',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  SizedBox(height: 300), // extra space for scrolling
-                ],
-              ),
-            ),
-          ),
-
-          // AppBar
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              leading: BackButton(),
-              actions: [IconButton(onPressed: () {}, icon: Icon(Icons.save))],
             ),
           ),
         ],

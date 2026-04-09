@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:recipebook/features/prodact_details_screen/ui/prodact_details_screen.dart';
+import 'package:recipebook/features/home_screen/ui/home_screen.dart';
 
 void main(List<String> args) {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     contexts = context;
-    return MaterialApp(title: 'My App', home: ProductDetailsStackPage());
+    return MaterialApp(title: 'My App', home: HomeScreen());
   }
 }
 

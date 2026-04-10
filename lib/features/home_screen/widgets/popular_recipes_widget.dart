@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipebook/features/prodact_details_screen/ui/prodact_details_screen.dart';
 import 'package:recipebook/main.dart';
 import 'package:recipebook/shared/widgets/product_widget_box.dart';
 
@@ -27,7 +28,15 @@ class PopularRecipesWidget extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return const ProductWidgetBox();
+                  return GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProdactDetailsScreen(),
+                      ),
+                    ),
+                    child: const ProductWidgetBox(),
+                  );
                 },
               ),
             ),

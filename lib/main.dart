@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:recipebook/features/main_screen/ui/main_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:recipebook/app_config.dart';
+import 'package:recipebook/shared/provider/shared_provider.dart';
 
 void main(List<String> args) {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,11 +21,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     contexts = context;
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-
-      title: 'Recipe Book',
-      home: MainScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => SharedProvider()..getRecipes()),
+      ],
+      child: const AppConfig(),
     );
   }
 }

@@ -8,7 +8,7 @@ class ProductWidgetBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 180,
-      margin: const EdgeInsets.all(8.0),
+
       color: Colors.transparent,
       child: Stack(
         children: [

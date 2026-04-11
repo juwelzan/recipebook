@@ -10,7 +10,7 @@ class PopularRecipesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: SizedBox(
-        height: 190.h,
+        height: 200.h,
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -35,7 +35,10 @@ class PopularRecipesWidget extends StatelessWidget {
                         builder: (context) => ProdactDetailsScreen(),
                       ),
                     ),
-                    child: const ProductWidgetBox(),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: const ProductWidgetBox(),
+                    ),
                   );
                 },
               ),

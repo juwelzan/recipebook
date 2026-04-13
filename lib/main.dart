@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:recipebook/app_config.dart';
+import 'package:recipebook/features/home_screen/provider/home_screen_provider.dart';
+import 'package:recipebook/features/main_screen/provider/main_screen_provider.dart';
 import 'package:recipebook/shared/provider/shared_provider.dart';
 
 void main(List<String> args) {
@@ -23,7 +25,11 @@ class MyApp extends StatelessWidget {
     contexts = context;
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => SharedProvider()..getRecipes()),
+        ChangeNotifierProvider(create: (_) => SharedProvider()),
+        ChangeNotifierProvider(create: (_) => MainScreenProvider()),
+        ChangeNotifierProvider(
+          create: (_) => HomeScreenProvider()..getAllRecipes(),
+        ),
       ],
       child: const AppConfig(),
     );

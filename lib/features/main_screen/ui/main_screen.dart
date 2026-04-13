@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipebook/features/add_my_recipe_screen/ui/add_my_recipe_screen.dart';
 import 'package:recipebook/features/home_screen/ui/home_screen.dart';
+import 'package:recipebook/features/main_screen/provider/main_screen_provider.dart';
 import 'package:recipebook/features/main_screen/widget/bottom_app_bars.dart';
 import 'package:recipebook/features/save_recipe_screen/ui/save_recipe_screen.dart';
 import 'package:recipebook/features/user_profile_screen/ui/user_profile_screen.dart';
-import 'package:recipebook/shared/provider/shared_provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -56,7 +56,7 @@ class _MainScreenState extends State<MainScreen>
   ];
   bool isPageChanged = false;
   void onPageChanged(int index) {
-    context.read<SharedProvider>().onTap(index);
+    context.read<MainScreenProvider>().onTap(index);
     if (isPageChanged) return;
     isPageChanged = true;
     pageController.animateToPage(

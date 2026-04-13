@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipebook/core/assets/svg_img.dart';
+import 'package:recipebook/features/main_screen/provider/main_screen_provider.dart';
 import 'package:recipebook/features/main_screen/widget/app_bar_button.dart';
 import 'package:recipebook/features/main_screen/widget/qr_code_scan_button.dart';
 import 'package:recipebook/main.dart';
-import 'package:recipebook/shared/provider/shared_provider.dart';
 
 typedef OnPageChanged = void Function(int index);
 
@@ -22,7 +22,7 @@ class _BottomAppBarsState extends State<BottomAppBars> {
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Consumer<SharedProvider>(
+    return Consumer<MainScreenProvider>(
       builder: (context, sharedProvider, child) {
         return Container(
           padding: EdgeInsets.symmetric(horizontal: 20.0.w),

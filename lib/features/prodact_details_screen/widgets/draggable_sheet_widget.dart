@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:recipebook/core/model/recipe_model.dart';
 import 'package:recipebook/features/prodact_details_screen/widgets/watch_videos_button.dart';
 import 'package:recipebook/main.dart';
 
 class DraggableSheetWidget extends StatelessWidget {
   final DraggableScrollableController? controller;
-  const DraggableSheetWidget({super.key, this.controller});
+  final RecipeModel recipe;
+  const DraggableSheetWidget({
+    super.key,
+    this.controller,
+    required this.recipe,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +58,15 @@ class DraggableSheetWidget extends StatelessWidget {
                         ////////////////////////
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              'Delicious Pasta',
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                recipe.title,
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                overflow: .ellipsis,
                               ),
                             ),
                             Text(

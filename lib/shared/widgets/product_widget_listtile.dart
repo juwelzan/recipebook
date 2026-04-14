@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:recipebook/core/assets/svg_img.dart';
 import 'package:recipebook/core/model/recipe_model.dart';
 import 'package:recipebook/shared/widgets/circle_blaur_button.dart';
 
@@ -60,16 +62,27 @@ class ProductWidgetListtile extends StatelessWidget {
                       const SizedBox(width: 10),
 
                       CircleBlaurButton(
-                        child: const Icon(Icons.favorite_border, size: 20),
+                        child: SvgPicture.asset(SvgImg.favorite),
                       ),
                     ],
                   ),
 
-                  Text(
-                    '⭐ 4.5 (200 reviews)',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        SvgImg.star,
+                        width: 16,
+                        height: 16,
+                        color: Colors.amber,
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        ' 4.5 (200 reviews)',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                      ),
+                    ],
                   ),
 
                   Text(

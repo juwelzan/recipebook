@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:recipebook/core/assets/svg_img.dart';
+import 'package:recipebook/core/model/recipe_model.dart';
 import 'package:recipebook/shared/widgets/circle_blaur_button.dart';
 
 class ProductWidgetBox extends StatelessWidget {
-  const ProductWidgetBox({super.key});
+  final RecipeModel recipe;
+  const ProductWidgetBox({super.key, required this.recipe});
 
   @override
   Widget build(BuildContext context) {
@@ -26,19 +30,19 @@ class ProductWidgetBox extends StatelessWidget {
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Image.network(
-                      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVjaXBlJTIwZGF5fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
-                      fit: BoxFit.cover,
-                    ),
+                    child: Image.network(recipe.image, fit: BoxFit.cover),
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  'Recipe Name',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black87,
-                    fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Text(
+                    recipe.title,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -53,7 +57,7 @@ class ProductWidgetBox extends StatelessWidget {
               ],
             ),
           ),
-          const Positioned(
+          Positioned(
             top: 8,
             left: 10,
             right: 10,
@@ -63,12 +67,28 @@ class ProductWidgetBox extends StatelessWidget {
                 CircleBlaurButton(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  child: Text(
-                    '⭐ 4.5',
-                    style: TextStyle(fontSize: 12, color: Colors.white),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        SvgImg.star,
+                        width: 16,
+                        height: 16,
+                        color: Colors.amber,
+                      ),
+                      Text(
+                        ' 4.5',
+                        style: TextStyle(fontSize: 12, color: Colors.white),
+                      ),
+                    ],
                   ),
                 ),
-                CircleBlaurButton(child: Icon(Icons.share)),
+                CircleBlaurButton(
+                  child: SvgPicture.asset(
+                    SvgImg.favorite,
+                    height: 20,
+                    width: 20,
+                  ),
+                ),
               ],
             ),
           ),

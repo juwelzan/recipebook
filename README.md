@@ -9,21 +9,22 @@ A Flutter recipe browser with Spoonacular search and recipe details, plus locall
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.19%20PM.png" width="190" alt="RecipeBook Screenshot 1">
+<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.19%E2%80%AFPM.png" width="190" alt="RecipeBook Screenshot 1">
 
-<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.26%20PM.png" width="190" alt="RecipeBook Screenshot 2">
+<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.26%E2%80%AFPM.png" width="190" alt="RecipeBook Screenshot 2">
 
-<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.35%20PM.png" width="190" alt="RecipeBook Screenshot 3">
+<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.35%E2%80%AFPM.png" width="190" alt="RecipeBook Screenshot 3">
 
-<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.41%20PM.png" width="190" alt="RecipeBook Screenshot 4">
+<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.41%E2%80%AFPM.png" width="190" alt="RecipeBook Screenshot 4">
 
-<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.48%20PM.png" width="190" alt="RecipeBook Screenshot 5">
+<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.48%E2%80%AFPM.png" width="190" alt="RecipeBook Screenshot 5">
 
-<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.31.35%20PM.png" width="190" alt="RecipeBook Screenshot 6">
+<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.31.35%E2%80%AFPM.png" width="190" alt="RecipeBook Screenshot 6">
 
-<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.31.50%20PM.png" width="190" alt="RecipeBook Screenshot 7">
+<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.31.50%E2%80%AFPM.png" width="190" alt="RecipeBook Screenshot 7">
 
 </div>
+
 
 
 

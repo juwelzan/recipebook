@@ -3,6 +3,50 @@
 A Flutter recipe browser with Spoonacular search and recipe details, plus locally managed recipes, favorites, and profile information.
 
 ## Features and screens
+## 📱 Screenshots
+
+RecipeBook's mobile interface showcasing the main recipe browsing, recipe details, favorites, profile, and other core app experiences.
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center">
+<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.19%20PM.png" width="190" alt="RecipeBook Screenshot 1">
+</td>
+<td align="center">
+<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.26%20PM.png" width="190" alt="RecipeBook Screenshot 2">
+</td>
+<td align="center">
+<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.35%20PM.png" width="190" alt="RecipeBook Screenshot 3">
+</td>
+<td align="center">
+<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.41%20PM.png" width="190" alt="RecipeBook Screenshot 4">
+</td>
+</tr>
+
+<tr>
+<td align="center">
+<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.30.48%20PM.png" width="190" alt="RecipeBook Screenshot 5">
+</td>
+<td align="center">
+<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.31.35%20PM.png" width="190" alt="RecipeBook Screenshot 6">
+</td>
+<td align="center">
+<img src="https://raw.githubusercontent.com/juwelzan/screenshot/main/recipebook%20/Screenshot%20iPhone%2018%20Pro%2025-09-2026%20at%204.31.50%20PM.png" width="190" alt="RecipeBook Screenshot 7">
+</td>
+<td align="center">
+<!-- Empty gallery slot -->
+</td>
+</tr>
+</table>
+
+<br>
+
+**7 Screens • iPhone 18 Pro**
+
+</div>
+
 
 - **Home:** search recipes, select vegetarian, vegan, gluten-free, and ketogenic diet filters, browse the first five cards in Popular Recipes, and page through search results in batches of ten.
 - **Recipe details:** show the image and API-provided ready time, ingredients, instructions, cuisine, meal type, servings, and health score when available.

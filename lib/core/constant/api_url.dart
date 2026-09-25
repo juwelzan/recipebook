@@ -2,7 +2,7 @@ class ApiUrl {
   ApiUrl._();
 
   static const String baseUrl = 'https://api.spoonacular.com/recipes';
-  static const String apiKey = "b09e4a41e8f54cc59e8670b903c6441a";
+  static const String apiKey = String.fromEnvironment('SPOONACULAR_API_KEY');
 
   static Uri recipes(Map<String, String> parameters) => Uri.parse(
     '$baseUrl/complexSearch',

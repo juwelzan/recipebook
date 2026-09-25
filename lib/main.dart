@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:recipebook/app_config.dart';
 import 'package:recipebook/features/home_screen/provider/home_screen_provider.dart';
 import 'package:recipebook/features/main_screen/provider/main_screen_provider.dart';
+import 'package:recipebook/features/user_profile_screen/provider/user_content_provider.dart';
 import 'package:recipebook/shared/provider/shared_provider.dart';
 
 void main(List<String> args) {
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => HomeScreenProvider()..getAllRecipes(),
         ),
+        ChangeNotifierProvider(create: (_) => UserContentProvider()..load()),
       ],
       child: const AppConfig(),
     );

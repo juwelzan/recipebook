@@ -4,6 +4,7 @@ import 'package:recipebook/core/model/recipe_model.dart';
 import 'package:recipebook/core/service/api_service.dart';
 
 class HomeScreenProvider extends ChangeNotifier {
+  static const int pageSize = 10;
   final List<String> categories = const [
     'All',
     'Vegetarian',
@@ -62,7 +63,7 @@ class HomeScreenProvider extends ChangeNotifier {
       );
       if (requestId != _requestId) return;
       allRecipes = recipes;
-      hasMore = recipes.length == 20;
+      hasMore = recipes.length == pageSize;
       loadMoreError = null;
     } catch (error) {
       if (requestId != _requestId) return;
@@ -85,13 +86,14 @@ class HomeScreenProvider extends ChangeNotifier {
         query: searchQuery,
         diet: selectedCategory,
         offset: allRecipes.length,
+        number: pageSize,
       );
       final existingIds = allRecipes.map((recipe) => recipe.id).toSet();
       final freshRecipes = recipes.where(
         (recipe) => !existingIds.contains(recipe.id),
       );
       allRecipes = [...allRecipes, ...freshRecipes];
-      hasMore = recipes.length == 20 && freshRecipes.isNotEmpty;
+      hasMore = recipes.length == pageSize && freshRecipes.isNotEmpty;
     } catch (error) {
       loadMoreError = error.toString();
     } finally {

@@ -17,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with AutomaticKeepAliveClientMixin {
   final TextEditingController _searchController = TextEditingController();
+  final FocusNode _searchFocusNode = FocusNode();
 
   @override
   bool get wantKeepAlive => true;
@@ -24,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void dispose() {
     _searchController.dispose();
+    _searchFocusNode.dispose();
     super.dispose();
   }
 
@@ -33,7 +35,9 @@ class _HomeScreenState extends State<HomeScreen>
     return Consumer<HomeScreenProvider>(
       builder: (context, state, _) {
         return Scaffold(
-          appBar: const CustomAppbar(),
+          appBar: CustomAppbar(
+            onSearchTap: () => _searchFocusNode.requestFocus(),
+          ),
           body: state.isLoading && state.allRecipes.isEmpty
               ? const LodingLottie()
               : state.errorMessage != null && state.allRecipes.isEmpty
@@ -65,6 +69,7 @@ class _HomeScreenState extends State<HomeScreen>
                           padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
                           child: TextField(
                             controller: _searchController,
+                            focusNode: _searchFocusNode,
                             textInputAction: TextInputAction.search,
                             onChanged: state.search,
                             decoration: InputDecoration(

@@ -17,7 +17,7 @@ class ApiService {
     String? query,
     String? diet,
     int offset = 0,
-    int number = 20,
+    int number = 10,
   }) async {
     _requireApiKey();
     final parameters = <String, String>{

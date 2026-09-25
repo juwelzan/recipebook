@@ -1,17 +1,31 @@
-# recipebook
+# Recipe Book
 
-A new Flutter project.
+A Flutter recipe browser backed by the Spoonacular API.
 
-## Getting Started
+## Run
 
-This project is a starting point for a Flutter application.
+Provide a Spoonacular API key at launch. The key that was previously committed
+to this repository has been removed; rotate it in Spoonacular before using the
+app again.
 
-A few resources to get you started if this is your first Flutter project:
+```sh
+flutter pub get
+flutter run --dart-define=SPOONACULAR_API_KEY=your_key
+```
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+The same `--dart-define` must be supplied to build commands. Dart defines keep
+credentials out of source control, but a key embedded in a mobile app can still
+be extracted from its binary. For production distribution, proxy Spoonacular
+requests through a backend that protects and rate-limits the key.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Structure
+
+- `lib/core/api` handles HTTP requests, timeouts, JSON decoding, and API errors.
+- `lib/core/service` builds Spoonacular requests and parses recipe responses.
+- `lib/core/model` holds the recipe data model.
+- `lib/features` contains Provider state and screens/widgets.
+- `lib/shared/provider` persists saved recipes with SharedPreferences.
+
+Recipe search supports query, diet filters, and offset pagination. Recipe
+details use Spoonacular's recipe information endpoint. Saved recipes are stored
+locally on the device.

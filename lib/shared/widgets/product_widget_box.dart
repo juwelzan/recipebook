@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:provider/provider.dart';
 import 'package:recipebook/core/assets/svg_img.dart';
 import 'package:recipebook/core/model/recipe_model.dart';
 import 'package:recipebook/shared/widgets/circle_blaur_button.dart';
+import 'package:recipebook/shared/provider/shared_provider.dart';
 
 class ProductWidgetBox extends StatelessWidget {
   final RecipeModel recipe;
@@ -30,7 +33,11 @@ class ProductWidgetBox extends StatelessWidget {
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Image.network(recipe.image, fit: BoxFit.cover),
+                    child: CachedNetworkImage(
+                      imageUrl: recipe.image,
+                      fit: BoxFit.cover,
+                      errorWidget: (_, _, _) => const Icon(Icons.restaurant),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -46,14 +53,11 @@ class ProductWidgetBox extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  "By : Author Name",
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[500],
-                    fontWeight: FontWeight.w500,
+                if (recipe.readyInMinutes != null)
+                  Text(
+                    '${recipe.readyInMinutes} min',
+                    style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                   ),
-                ),
               ],
             ),
           ),
@@ -69,25 +73,29 @@ class ProductWidgetBox extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        SvgImg.star,
-                        width: 16,
-                        height: 16,
-                        color: Colors.amber,
-                      ),
+                      const Icon(Icons.schedule, size: 15, color: Colors.white),
                       Text(
-                        ' 4.5',
-                        style: TextStyle(fontSize: 12, color: Colors.white),
+                        ' ${recipe.readyInMinutes ?? '—'} min',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
                 ),
-                CircleBlaurButton(
-                  child: SvgPicture.asset(
-                    SvgImg.favorite,
-                    height: 20,
-                    width: 20,
-                  ),
+                Consumer<SharedProvider>(
+                  builder: (context, saved, _) {
+                    final isSaved = saved.isFavorite(recipe.id);
+                    return CircleBlaurButton(
+                      onTap: () => saved.toggleFavorite(recipe),
+                      child: SvgPicture.asset(
+                        isSaved ? SvgImg.favoriteFilled : SvgImg.favorite,
+                        height: 20,
+                        width: 20,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

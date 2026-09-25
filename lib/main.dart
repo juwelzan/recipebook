@@ -25,7 +25,9 @@ class MyApp extends StatelessWidget {
     contexts = context;
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => SharedProvider()),
+        ChangeNotifierProvider(
+          create: (_) => SharedProvider()..loadFavorites(),
+        ),
         ChangeNotifierProvider(create: (_) => MainScreenProvider()),
         ChangeNotifierProvider(
           create: (_) => HomeScreenProvider()..getAllRecipes(),

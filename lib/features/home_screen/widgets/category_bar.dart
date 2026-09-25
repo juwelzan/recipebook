@@ -39,7 +39,25 @@ class CategoryBar extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(right: 5.0, left: 5.0),
-                      child: Container(
+                      child: ActionChip(
+                        label: Text(state.categories[index]),
+                        onPressed: () =>
+                            state.getRecipesByCategory(state.categories[index]),
+                        backgroundColor:
+                            state.selectedCategory == state.categories[index]
+                            ? Colors.blueAccent
+                            : Colors.grey.shade200,
+                        labelStyle: TextStyle(
+                          color:
+                              state.selectedCategory == state.categories[index]
+                              ? Colors.white
+                              : Colors.black87,
+                        ),
+                        shape: const StadiumBorder(),
+                        side: BorderSide.none,
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                      ),
+                      /*child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         decoration: BoxDecoration(
                           color: Colors.blueAccent,
@@ -51,7 +69,7 @@ class CategoryBar extends StatelessWidget {
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
-                      ),
+                      ),*/
                     );
                   },
                   itemCount: state.categories.length,

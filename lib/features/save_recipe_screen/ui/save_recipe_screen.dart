@@ -1,44 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:recipebook/core/model/recipe_model.dart';
-import 'package:recipebook/features/save_recipe_screen/widget/custom_app_bar_save.dart';
+import 'package:provider/provider.dart';
+import 'package:recipebook/features/prodact_details_screen/ui/prodact_details_screen.dart';
+import 'package:recipebook/shared/provider/shared_provider.dart';
 import 'package:recipebook/shared/widgets/product_widget_listtile.dart';
 
-class SaveRecipeScreen extends StatefulWidget {
+class SaveRecipeScreen extends StatelessWidget {
   const SaveRecipeScreen({super.key});
 
   @override
-  State<SaveRecipeScreen> createState() => _SaveRecipeScreenState();
-}
-
-class _SaveRecipeScreenState extends State<SaveRecipeScreen>
-    with AutomaticKeepAliveClientMixin {
-  @override
-  bool get wantKeepAlive => true;
-
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Scaffold(
-      appBar: CustomAppBarSave(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: ListView.separated(
-          padding: const EdgeInsets.only(top: 20.0, bottom: 150.0),
-          itemCount: 20,
-          itemBuilder: (context, index) {
-            return ProductWidgetListtile(
-              recipe: RecipeModel(
-                title: 'Recipe Title $index',
-                image: 'https://example.com/image$index.jpg',
-                id: 1,
-                imageType: '',
+      appBar: AppBar(title: const Text('Saved recipes')),
+      body: Consumer<SharedProvider>(
+        builder: (context, saved, _) {
+          if (saved.favorites.isEmpty) {
+            return const Center(
+              child: Padding(
+                padding: EdgeInsets.all(32),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.bookmark_border, size: 56, color: Colors.grey),
+                    SizedBox(height: 12),
+                    Text(
+                      'No saved recipes yet',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(height: 6),
+                    Text(
+                      'Tap the bookmark on a recipe to keep it here.',
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
             );
-          },
-          separatorBuilder: (context, index) {
-            return const Divider(thickness: 1, color: Colors.grey, height: 30);
-          },
-        ),
+          }
+          return ListView.separated(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 100),
+            itemCount: saved.favorites.length,
+            separatorBuilder: (_, _) => const Divider(height: 24),
+            itemBuilder: (context, index) {
+              final recipe = saved.favorites[index];
+              return ProductWidgetListtile(
+                recipe: recipe,
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ProdactDetailsScreen(recipeModel: recipe),
+                  ),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }

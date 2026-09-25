@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:recipebook/core/assets/svg_img.dart';
 import 'package:recipebook/core/model/recipe_model.dart';
-import 'package:recipebook/shared/widgets/circle_blaur_button.dart';
+import 'package:provider/provider.dart';
+import 'package:recipebook/shared/provider/shared_provider.dart';
 
 class ProductWidgetListtile extends StatelessWidget {
   final RecipeModel recipe;
@@ -61,32 +62,41 @@ class ProductWidgetListtile extends StatelessWidget {
 
                       const SizedBox(width: 10),
 
-                      CircleBlaurButton(
-                        child: SvgPicture.asset(SvgImg.favorite),
-                      ),
-                    ],
-                  ),
-
-                  Row(
-                    children: [
-                      SvgPicture.asset(
-                        SvgImg.star,
-                        width: 16,
-                        height: 16,
-                        color: Colors.amber,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        ' 4.5 (200 reviews)',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                      Consumer<SharedProvider>(
+                        builder: (context, saved, _) {
+                          final isSaved = saved.isFavorite(recipe.id);
+                          return IconButton(
+                            tooltip: isSaved
+                                ? 'Remove from saved recipes'
+                                : 'Save recipe',
+                            onPressed: () => saved.toggleFavorite(recipe),
+                            icon: SvgPicture.asset(
+                              isSaved ? SvgImg.favoriteFilled : SvgImg.favorite,
+                              colorFilter: ColorFilter.mode(
+                                isSaved ? Colors.red : Colors.black87,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
 
                   Text(
-                    "By Chef's Name",
+                    [
+                          if (recipe.readyInMinutes != null)
+                            '${recipe.readyInMinutes} min',
+                          if (recipe.healthScore != null)
+                            'Health ${recipe.healthScore!.round()}%',
+                        ].join(' • ').isEmpty
+                        ? 'Recipe'
+                        : [
+                            if (recipe.readyInMinutes != null)
+                              '${recipe.readyInMinutes} min',
+                            if (recipe.healthScore != null)
+                              'Health ${recipe.healthScore!.round()}%',
+                          ].join(' • '),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontSize: 14, color: Colors.grey[600]),

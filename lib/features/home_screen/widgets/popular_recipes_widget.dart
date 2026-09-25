@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recipebook/features/home_screen/provider/home_screen_provider.dart';
 import 'package:recipebook/features/prodact_details_screen/ui/prodact_details_screen.dart';
-import 'package:recipebook/main.dart';
 import 'package:recipebook/shared/widgets/product_widget_box.dart';
 
 class PopularRecipesWidget extends StatelessWidget {
@@ -14,7 +13,7 @@ class PopularRecipesWidget extends StatelessWidget {
       child: Consumer<HomeScreenProvider>(
         builder: (context, state, child) {
           return SizedBox(
-            height: 200.h,
+            height: 220,
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -33,7 +32,9 @@ class PopularRecipesWidget extends StatelessWidget {
                     separatorBuilder: (context, index) =>
                         const SizedBox(width: 10),
                     scrollDirection: Axis.horizontal,
-                    itemCount: 10,
+                    itemCount: state.allRecipes.length < 10
+                        ? state.allRecipes.length
+                        : 10,
                     itemBuilder: (context, index) {
                       final data = state.allRecipes[index];
                       return GestureDetector(
